@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//   The Message model
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MessageOfTheDay.Models
 {

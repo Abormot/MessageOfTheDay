@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//   The Language Service interface
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using MessageOfTheDay.Models;
+﻿using MessageOfTheDay.Models;
 using System.Collections.Generic;
 
 namespace MessageOfTheDay.Services

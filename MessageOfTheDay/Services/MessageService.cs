@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//   The Message Service 
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using MessageOfTheDay.Data;
+﻿using MessageOfTheDay.Data;
 using MessageOfTheDay.Models;
 using System.Linq;
 

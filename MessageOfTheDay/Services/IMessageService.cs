@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//   The Message Service interface
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using MessageOfTheDay.Models;
+﻿using MessageOfTheDay.Models;
 
 namespace MessageOfTheDay.Services
 {

@@ -1,10 +1,4 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <summary>
-//   The Language Service 
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
-
-using MessageOfTheDay.Data;
+﻿using MessageOfTheDay.Data;
 using MessageOfTheDay.Models;
 using System.Collections.Generic;
 using System.Linq;
