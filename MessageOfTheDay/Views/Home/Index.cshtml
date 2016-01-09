@@ -1,0 +1,42 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-collapse collapse" style="float:left">
+
+            <div class="menu">
+                <img class="flag menu" data-bind="attr: {src: selectedLanguageImagePath }" />
+                <select id="language" class="form-control menu" data-bind="options: languages, optionsText: 'Name', optionsValue: 'Id', value: selectedLanguage, event: { change: $root.languageChanged }"></select>
+            </div>
+            <div class="menu">
+                <select id="day" class="form-control menu" data-bind="options: days, optionsText: 'Name', optionsValue: 'Id', value:selectedDay, event: { change: $root.dayChanged }, optionsAfterRender: selectDefaultDay"></select>
+            </div>
+         </div>
+    </div>
+</div>
+<div class="jumbotron">
+    <div data-bind="with: message">
+        <input id="messageId" type="hidden" data-bind="value: Id" />
+        <span id="error" data-bind="text: $parent.Error" class="red"></span>
+        <h1>
+            <span data-bind="text: Text, visible: !$parent.isEditMode()"></span>
+            <textarea id="messageText" class="form-control" data-bind="value: Text, visible: $parent.isEditMode()"></textarea>
+        </h1>
+        <span>This is a Message of the Day for day </span><strong data-bind="text: Day"></strong>
+    </div>
+    <input type="button" class="btn btn-primary " value="Edit" data-bind="click: Edit, visible: !isEditMode()" />
+    <input type="button" class="btn btn-primary " value="Save" data-bind="click: Save, visible: isEditMode()" />
+    <input type="button" class="btn btn-primary " value="Cancel" data-bind="click: Cancel, visible: isEditMode()" />
+</div>
+
+
+@section scripts {
+   
+    <script src="@Url.Content("~/Scripts/MessagesViewModel.js")"></script>
+    <script type="text/javascript">
+        $(function () {
+            module.InitModule();
+        });
+    </script>
+}
+
+
+

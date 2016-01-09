@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageOfTheDay", "MessageOfTheDay\MessageOfTheDay.csproj", "{62C6261A-3D5B-4343-827B-133D2EF93821}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MessageOfTheDay.Tests", "MessageOfTheDay.Tests\MessageOfTheDay.Tests.csproj", "{3DAC3ED7-CD0A-4525-B897-CDCFDE3FF4BA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{62C6261A-3D5B-4343-827B-133D2EF93821}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62C6261A-3D5B-4343-827B-133D2EF93821}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62C6261A-3D5B-4343-827B-133D2EF93821}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62C6261A-3D5B-4343-827B-133D2EF93821}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DAC3ED7-CD0A-4525-B897-CDCFDE3FF4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DAC3ED7-CD0A-4525-B897-CDCFDE3FF4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DAC3ED7-CD0A-4525-B897-CDCFDE3FF4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DAC3ED7-CD0A-4525-B897-CDCFDE3FF4BA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
