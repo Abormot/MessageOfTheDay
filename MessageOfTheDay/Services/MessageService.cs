@@ -1,11 +1,26 @@
-﻿using MessageOfTheDay.Data;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <summary>
+//   The Message Service 
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using MessageOfTheDay.Data;
 using MessageOfTheDay.Models;
 using System.Linq;
 
 namespace MessageOfTheDay.Services
 {
+    /// <summary>
+    /// The Message Service
+    /// </summary>
     public class MessageService: IMessageService
     {
+        /// <summary>
+        /// Get message of the day by param
+        /// </summary>
+        /// <param name="dayId">Day id</param>
+        /// <param name="languageId">Language id</param>
+        /// <returns>Message entity</returns>
         public MessageDTO GetMessageQuery(int dayId, int languageId)
         {
             var result = new MessageDTO();
@@ -26,6 +41,12 @@ namespace MessageOfTheDay.Services
             return result;
         }
 
+        /// <summary>
+        /// Set message text for the message
+        /// </summary>
+        /// <param name="id">Message id</param>
+        /// <param name="messageText">New message text</param>
+        /// <returns>Updated message entity</returns>
         public MessageDTO SetMessageCommand(int id, string messageText)
         {
             using (var db = new MessagesDBEntities())

@@ -1,4 +1,10 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <summary>
+//   The Messages controller
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 using System.Linq;
 using System.Web.Http;
 using MessageOfTheDay.Models;
@@ -6,28 +12,40 @@ using MessageOfTheDay.Services;
 
 namespace MessageOfTheDay.Api
 {
+    /// <summary>
+    /// The Messages controller
+    /// </summary>
     public class MessagesController : ApiController
     {
         private readonly ILanguageService _languageService;
-        private readonly IDayService _daysService;
+        private readonly IDayService _dayService;
         private readonly IMessageService _messageSevice;
 
-        public MessagesController(ILanguageService languageService, IDayService daysService, IMessageService messageSevice)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessagesController"/> class.
+        /// </summary>
+        /// <param name="languageService">The Languages Service</param>
+        /// <param name="dayService">The Days Service</param>
+        /// <param name="messageSevice">The Messages Service</param>
+        public MessagesController(ILanguageService languageService, IDayService dayService, IMessageService messageSevice)
         {
             if (languageService == null)
                 throw new ArgumentNullException("languageService");
             _languageService = languageService;
 
-            if (daysService == null)
-                throw new ArgumentNullException("daysService");
-            _daysService = daysService;
+            if (dayService == null)
+                throw new ArgumentNullException("dayService");
+            _dayService = dayService;
 
             if (messageSevice == null)
                 throw new ArgumentNullException("messageSevice");
             _messageSevice = messageSevice;
         }
 
-        // GET api/Messages/GetLanguages
+        /// <summary>
+        /// Get all languages
+        /// </summary>
+        /// <returns>languages collection</returns>
         [HttpGet]
         public IHttpActionResult GetLanguages()
         {
@@ -39,11 +57,14 @@ namespace MessageOfTheDay.Api
             return Ok(result);
         }
 
-        // GET api/Messages/GetDays
+        /// <summary>
+        /// Get all days
+        /// </summary>
+        /// <returns>days collection</returns>
         [HttpGet]
         public IHttpActionResult GetDays()
         {
-            var result = _daysService.GetDaysQuery();
+            var result = _dayService.GetDaysQuery();
             if (!result.Any())
             {
                 return BadRequest();
@@ -51,7 +72,12 @@ namespace MessageOfTheDay.Api
             return Ok(result);
         }
 
-        // GET api/Messages/GetMessage?dayid=<value>&languageID=<value>
+        /// <summary>
+        /// Get Message by params
+        /// </summary>
+        /// <param name="dayId">Day Id</param>
+        /// <param name="languageId">Language Id</param>
+        /// <returns>Message entity</returns>
         [HttpGet]
         public IHttpActionResult GetMessage(int dayId, int languageId)
         {
@@ -63,7 +89,11 @@ namespace MessageOfTheDay.Api
             return Ok(result);
         }
 
-        // POST api/Messages/SetMessage
+        /// <summary>
+        /// Change Message Text
+        /// </summary>
+        /// <param name="message">Message entity</param>
+        /// <returns>Updated message entity</returns>
         [HttpPost]
         public IHttpActionResult SetMessage([FromBody] MessageDTO message)
         {
