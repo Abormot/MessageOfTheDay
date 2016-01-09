@@ -38,7 +38,7 @@ namespace MessageOfTheDay.Tests.Integration
                 
                 //Act
                 var result = _controller.GetMessage(dayId, languageId);
-                var response = result as OkNegotiatedContentResult<Message>;
+                var response = result as OkNegotiatedContentResult<MessageDTO>;
 
                 // Assert
                 Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
@@ -52,7 +52,7 @@ namespace MessageOfTheDay.Tests.Integration
         {
             string oldValue;
             // Arrange
-            var message = new Message
+            var message = new MessageDTO
             {
                 Id = 1,
                 Text = "new message text"
@@ -65,7 +65,7 @@ namespace MessageOfTheDay.Tests.Integration
 
             //Act
             var result = _controller.SetMessage(message);
-            var response = result as OkNegotiatedContentResult<Message>;
+            var response = result as OkNegotiatedContentResult<MessageDTO>;
 
             using (var db = new MessagesDBEntities())
             {

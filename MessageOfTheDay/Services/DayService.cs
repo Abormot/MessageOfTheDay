@@ -6,11 +6,11 @@ namespace MessageOfTheDay.Services
 {
     public class DayService: IDayService
     {
-        public IList<Day> GetDaysQuery()
+        public IList<DayDTO> GetDaysQuery()
         {
             using (var db = new MessagesDBEntities())
             {
-                return db.Days.Select(x => new Day
+                return db.Days.Select(x => new DayDTO
                 {
                     Id = x.Id,
                     Name = x.Name

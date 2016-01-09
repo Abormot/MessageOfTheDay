@@ -171,9 +171,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Day.cs" />
-    <Compile Include="Models\Language.cs" />
-    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\DayDTO.cs" />
+    <Compile Include="Models\LanguageDTO.cs" />
+    <Compile Include="Models\MessageDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DayService.cs" />
     <Compile Include="Services\IDayService.cs" />

@@ -6,14 +6,14 @@ namespace MessageOfTheDay.Services
 {
     public class MessageService: IMessageService
     {
-        public Message GetMessageQuery(int dayId, int languageId)
+        public MessageDTO GetMessageQuery(int dayId, int languageId)
         {
-            var result = new Message();
+            var result = new MessageDTO();
             using (var db = new MessagesDBEntities())
             {
                 var message = db.Messages.FirstOrDefault(x => x.DayId == dayId && x.LanguageId == languageId);
                 if (message != null)
-                    result = new Message
+                    result = new MessageDTO
                     {
                         Id = message.Id,
                         DayId = message.DayId ?? 0,
@@ -26,7 +26,7 @@ namespace MessageOfTheDay.Services
             return result;
         }
 
-        public Message SetMessageCommand(int id, string messageText)
+        public MessageDTO SetMessageCommand(int id, string messageText)
         {
             using (var db = new MessagesDBEntities())
             {
@@ -36,7 +36,7 @@ namespace MessageOfTheDay.Services
                     message.Message = messageText;
                     db.SaveChanges();
 
-                    return new Message
+                    return new MessageDTO
                            {
                                Id = message.Id,
                                DayId = message.DayId ?? 0,

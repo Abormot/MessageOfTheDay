@@ -2,7 +2,7 @@
 
 namespace MessageOfTheDay.Models
 {
-    public class Message
+    public class MessageDTO
     {
         public int Id { get; set; }
         public int LanguageId { get; set; }

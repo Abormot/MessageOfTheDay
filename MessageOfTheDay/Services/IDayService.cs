@@ -5,6 +5,6 @@ namespace MessageOfTheDay.Services
 {
     public interface IDayService
     {
-        IList<Day> GetDaysQuery();
+        IList<DayDTO> GetDaysQuery();
     }
 }

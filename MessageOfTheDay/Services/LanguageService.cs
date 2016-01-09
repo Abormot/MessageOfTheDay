@@ -7,11 +7,11 @@ namespace MessageOfTheDay.Services
 {
     public class LanguageService: ILanguageService
     {
-        public IList<Language> GetLanguagesQuery()
+        public IList<LanguageDTO> GetLanguagesQuery()
         {
             using (var db = new MessagesDBEntities())
             {
-                return db.Languages.Select(x => new Language
+                return db.Languages.Select(x => new LanguageDTO
                 {
                     Id = x.Id,
                     Name = x.Name,

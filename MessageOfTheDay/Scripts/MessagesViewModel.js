@@ -3,29 +3,29 @@
     var module = {};
 
     // Load days list from server, then populate Days
-    function LoadDays() {
+    function loadDays() {
         return $.getJSON("/api/Messages/getDays", function (data) {
             module.days = data;
         });
     }
 
     // Load Languages list from server, then populate Languages
-    function LoadLanguages() {
+    function loadLanguages() {
        return $.getJSON("/api/Messages/getLanguages", function (data) {
             module.languages = data;
         });
     }
 
-    var init = function Init() {
+    var init = function() {
         //define current day of week to set as a default
         var today = new Date();
-        var currentDayOfWeek = today.getDay() == 0 ? 7 : today.getDay();
+        var currentDayOfWeek = today.getDay() === 0 ? 7 : today.getDay();
 
         module.initDay = currentDayOfWeek;
         module.initLanguage = 1;
         
-        $.blockUI({ message: '<h4> Just a moment...</h4>' });
-        LoadDays().then(LoadLanguages)
+        $.blockUI({ message: "<h4> Just a moment...</h4>" });
+        loadDays().then(loadLanguages)
             .then(function () { ko.applyBindings(new MessageViewModel()); })
             .then(function () { $.unblockUI(); });
     };
@@ -43,34 +43,34 @@
         self.selectedLanguageImagePath = ko.computed(function () {
             return "/Content/Images/" + self.languages().filter(
                 function (item) {
-                    if (item.Id == self.selectedLanguage()) return item;
+                    if (item.Id === self.selectedLanguage()) return item;
                 })[0].PartialFlagPath;
         });
 
         self.selectDefaultDay = function (option, item) {
-            if (item.Id == module.initDay) {
+            if (item.Id === module.initDay) {
                 ko.applyBindingsToNode(option.parentElement, { value: item.Id }, item);
             }
         };
 
-        self.dayChanged = function (element) {
+        self.dayChanged = function () {
             self.isEditMode(false);
-            LoadMessage();
+            loadMessage();
         };
 
-        self.languageChanged = function (element) {
+        self.languageChanged = function () {
             self.isEditMode(false);
-            LoadMessage();
+            loadMessage();
         };
         
-        function LoadMessage() {
+        function loadMessage() {
             return $.getJSON("/api/Messages/getMessage?dayId=" + self.selectedDay() + "&languageId=" + self.selectedLanguage(),
                 function (message) {
                     self.message(message);
                 });
         }
 
-        LoadMessage();
+        loadMessage();
 
         //Edit message area
         var tempvalue;
@@ -78,19 +78,19 @@
         self.isEditMode = ko.observable(false);
         self.errorMessage = ko.observable();
 
-        self.Edit = function Edit() {
+        self.Edit = function() {
             tempvalue = self.message().Text;
             self.isEditMode(true);
         }
 
-        self.Save = function Save() {
+        self.Save = function() {
             $.post("/api/Messages/SetMessage/", { id: self.message().Id, text: self.message().Text })
             .success(function (data) {
                 clearErrorMessage();
                 self.message(data);
                 self.isEditMode(false);
             })
-            .error(function (xhr, status, error) {
+            .error(function (xhr) {
                 var err = $.parseJSON(xhr.responseText);
                 if (typeof(err.ModelState) == "object")
                     self.errorMessage(err.ModelState["message.Text"][0]);
@@ -103,7 +103,7 @@
             self.errorMessage("");
         }
 
-        self.Cancel = function Cancel() {
+        self.Cancel = function() {
             clearErrorMessage();
             $("#messageText").val(tempvalue);
             self.message().Text = tempvalue;

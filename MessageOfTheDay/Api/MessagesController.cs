@@ -65,7 +65,7 @@ namespace MessageOfTheDay.Api
 
         // POST api/Messages/SetMessage
         [HttpPost]
-        public IHttpActionResult SetMessage([FromBody] Message message)
+        public IHttpActionResult SetMessage([FromBody] MessageDTO message)
         {
             if (!ModelState.IsValid)
             {

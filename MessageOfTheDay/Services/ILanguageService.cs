@@ -5,6 +5,6 @@ namespace MessageOfTheDay.Services
 {
     public interface ILanguageService
     {
-        IList<Language> GetLanguagesQuery();
+        IList<LanguageDTO> GetLanguagesQuery();
     }
 }

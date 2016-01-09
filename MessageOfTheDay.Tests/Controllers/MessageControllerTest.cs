@@ -33,12 +33,12 @@ namespace MessageOfTheDay.Tests.Controllers
         public void Test_GetDays()
         {
             // Arrange
-            var expected = new List<Day> { new Day() };
+            var expected = new List<DayDTO> { new DayDTO() };
             _dayService.Setup(x => x.GetDaysQuery()).Returns(expected);
             
             // Act
             var result = _controller.GetDays();
-            var response = result as OkNegotiatedContentResult<IList<Day>>;
+            var response = result as OkNegotiatedContentResult<IList<DayDTO>>;
             
             // Assert
             Assert.IsInstanceOf<IHttpActionResult>(result);
@@ -54,7 +54,7 @@ namespace MessageOfTheDay.Tests.Controllers
         public void Test_GetMessage(int dayId, int languageId)
         {
             // Arrange
-            var expected = new Message { 
+            var expected = new MessageDTO { 
                 DayId = dayId,
                 LanguageId = languageId,
                 Text = string.Format("test messgae for day {0}, language {1}", dayId, languageId)
@@ -64,7 +64,7 @@ namespace MessageOfTheDay.Tests.Controllers
 
             // Act
             var result = _controller.GetMessage(dayId, languageId);
-            var response = result as OkNegotiatedContentResult<Message>;
+            var response = result as OkNegotiatedContentResult<MessageDTO>;
 
             // Assert
             Assert.IsInstanceOf<IHttpActionResult>(result);
@@ -85,7 +85,7 @@ namespace MessageOfTheDay.Tests.Controllers
         public void Test_SetMessage()
         {
             // Arrange
-            var expected = new Message
+            var expected = new MessageDTO
             {
                 Id = 1,
                 Text = "new message text"
@@ -94,7 +94,7 @@ namespace MessageOfTheDay.Tests.Controllers
 
             // Act
             var result = _controller.SetMessage(expected);
-            var response = result as OkNegotiatedContentResult<Message>;
+            var response = result as OkNegotiatedContentResult<MessageDTO>;
 
             // Assert
             Assert.IsInstanceOf<IHttpActionResult>(result);
