@@ -1,13 +1,10 @@
-﻿using MessageOfTheDay.Models;
-using MessageOfTheDay.Services;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using MessageOfTheDay.Models;
+using MessageOfTheDay.Services;
 
-namespace MessageOfTheDay.Controllers
+namespace MessageOfTheDay.Api
 {
     public class MessagesController : ApiController
     {
@@ -18,15 +15,15 @@ namespace MessageOfTheDay.Controllers
         public MessagesController(ILanguageService languageService, IDayService daysService, IMessageService messageSevice)
         {
             if (languageService == null)
-                throw new ArgumentNullException("ILanguageService passed to MessagesController is null");
+                throw new ArgumentNullException("languageService");
             _languageService = languageService;
 
             if (daysService == null)
-                throw new ArgumentNullException("IDaysService passed to MessagesController is null");
+                throw new ArgumentNullException("daysService");
             _daysService = daysService;
 
             if (messageSevice == null)
-                throw new ArgumentNullException("IMessageSevice passed to MessagesController is null");
+                throw new ArgumentNullException("messageSevice");
             _messageSevice = messageSevice;
         }
 

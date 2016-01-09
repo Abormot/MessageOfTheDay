@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Web.Http;
-using MessageOfTheDay;
-using MessageOfTheDay.Controllers;
+﻿using System.Linq;
 using MessageOfTheDay.Services;
 using MessageOfTheDay.Models;
 using System.Web.Http.Results;
-
-using NUnit.Framework;
+using MessageOfTheDay.Api;
 using MessageOfTheDay.Data;
 
+using NUnit.Framework;
 
 namespace MessageOfTheDay.Tests.Integration
 {
@@ -49,7 +42,7 @@ namespace MessageOfTheDay.Tests.Integration
 
                 // Assert
                 Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-                Assert.IsNotNull(response.Content);
+                Assert.IsNotNull(response);
                 Assert.AreEqual(dbMessage.Message, response.Content.Text);
             }
         }
@@ -59,7 +52,7 @@ namespace MessageOfTheDay.Tests.Integration
         {
             string oldValue;
             // Arrange
-            var message = new Message()
+            var message = new Message
             {
                 Id = 1,
                 Text = "new message text"
@@ -81,7 +74,7 @@ namespace MessageOfTheDay.Tests.Integration
 
                 // Assert
                 Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-                Assert.IsNotNull(response.Content);
+                Assert.IsNotNull(response);
                 Assert.AreEqual(message.Text, response.Content.Text);
                 Assert.AreEqual(message.Text, dbMessage.Message);
 

@@ -1,10 +1,7 @@
 ﻿using MessageOfTheDay.Data;
 using MessageOfTheDay.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-
 namespace MessageOfTheDay.Services
 {
     public class DayService: IDayService

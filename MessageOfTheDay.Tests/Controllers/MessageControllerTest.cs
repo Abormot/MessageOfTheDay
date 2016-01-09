@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Web.Http;
-using MessageOfTheDay;
-using MessageOfTheDay.Controllers;
 using MessageOfTheDay.Services;
 using MessageOfTheDay.Models;
 using System.Web.Http.Results;
+using MessageOfTheDay.Api;
 
 using Moq;
 
@@ -38,9 +33,7 @@ namespace MessageOfTheDay.Tests.Controllers
         public void Test_GetDays()
         {
             // Arrange
-            var expected = new List<Day>();
-            expected.Add(new Day());
-
+            var expected = new List<Day> { new Day() };
             _dayService.Setup(x => x.GetDaysQuery()).Returns(expected);
             
             // Act
@@ -48,8 +41,8 @@ namespace MessageOfTheDay.Tests.Controllers
             var response = result as OkNegotiatedContentResult<IList<Day>>;
             
             // Assert
-            Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-            Assert.IsNotNull(response.Content);
+            Assert.IsInstanceOf<IHttpActionResult>(result);
+            Assert.IsNotNull(response);
             Assert.AreEqual(expected, response.Content);
         }
 
@@ -74,8 +67,8 @@ namespace MessageOfTheDay.Tests.Controllers
             var response = result as OkNegotiatedContentResult<Message>;
 
             // Assert
-            Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-            Assert.IsNotNull(response.Content);
+            Assert.IsInstanceOf<IHttpActionResult>(result);
+            Assert.IsNotNull(response);
             Assert.AreEqual(expected, response.Content);
         }
 
@@ -104,8 +97,8 @@ namespace MessageOfTheDay.Tests.Controllers
             var response = result as OkNegotiatedContentResult<Message>;
 
             // Assert
-            Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-            Assert.IsNotNull(response.Content);
+            Assert.IsInstanceOf<IHttpActionResult>(result);
+            Assert.IsNotNull(response);
             Assert.AreEqual(expected, response.Content);
         }
     }

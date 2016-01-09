@@ -1,9 +1,6 @@
 ﻿using MessageOfTheDay.Data;
 using MessageOfTheDay.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace MessageOfTheDay.Services
 {
@@ -19,9 +16,9 @@ namespace MessageOfTheDay.Services
                     result = new Message
                     {
                         Id = message.Id,
-                        DayId = message.DayId.HasValue ? message.DayId.Value : 0,
+                        DayId = message.DayId ?? 0,
                         Day = message.Days != null ? message.Days.Name : "",
-                        LanguageId = message.LanguageId.HasValue ? message.LanguageId.Value : 0,
+                        LanguageId = message.LanguageId ?? 0,
                         Language = message.Languages != null ? message.Languages.Name : "",
                         Text = message.Message
                     };
@@ -29,34 +26,28 @@ namespace MessageOfTheDay.Services
             return result;
         }
 
-        public Message SetMessageCommand(int Id, string messageText)
+        public Message SetMessageCommand(int id, string messageText)
         {
-            try
+            using (var db = new MessagesDBEntities())
             {
-                using (var db = new MessagesDBEntities())
+                var message = db.Messages.FirstOrDefault(x => x.Id == id);
+                if (message != null)
                 {
-                    var message = db.Messages.FirstOrDefault(x => x.Id == Id);
-                    if (message != null)
-                    {
-                        message.Message = messageText;
-                        db.SaveChanges();
-                    }
+                    message.Message = messageText;
+                    db.SaveChanges();
+
                     return new Message
-                    {
-                        Id = message.Id,
-                        DayId = message.DayId.HasValue ? message.DayId.Value : 0,
-                        Day = message.Days != null ? message.Days.Name : "",
-                        LanguageId = message.LanguageId.HasValue ? message.LanguageId.Value : 0,
-                        Language = message.Languages != null ? message.Languages.Name : "",
-                        Text = message.Message
-                    }; ;
-                }                
+                           {
+                               Id = message.Id,
+                               DayId = message.DayId ?? 0,
+                               Day = message.Days != null ? message.Days.Name : "",
+                               LanguageId = message.LanguageId ?? 0,
+                               Language = message.Languages != null ? message.Languages.Name : "",
+                               Text = message.Message
+                           };
+                }
             }
-            catch (Exception ex)
-            {
-                //Log Exception
-                return null;
-            }
+            return null;
         }
     }
 }
