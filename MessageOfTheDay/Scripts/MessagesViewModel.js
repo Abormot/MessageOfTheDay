@@ -84,15 +84,18 @@
         }
 
         self.Save = function Save() {
-            $.post("/api/Messages/SetMessage/" + self.message().Id, { text: self.message().Text })
+            $.post("/api/Messages/SetMessage/", { id: self.message().Id, text: self.message().Text })
             .success(function (data) {
                 clearErrorMessage();
                 self.message(data);
                 self.isEditMode(false);
             })
             .error(function (xhr, status, error) {
-                var err = eval("(" + xhr.responseText + ")");
-                self.errorMessage(err.Message);
+                var err = $.parseJSON(xhr.responseText);
+                if (typeof(err.ModelState) == "object")
+                    self.errorMessage(err.ModelState["message.Text"][0]);
+                else
+                    self.errorMessage(err.Message);
             });
         }
 

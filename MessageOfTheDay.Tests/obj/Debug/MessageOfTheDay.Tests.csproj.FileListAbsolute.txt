@@ -36,3 +36,9 @@ D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\Ninject.Web.Comm
 D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\Ninject.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\obj\Debug\MessageOfTheDay.Tests.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\obj\Debug\MessageOfTheDay.Tests.pdb
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\Moq.dll
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\Moq.xml
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\nunit.framework.dll
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\nunit.framework.xml
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\EntityFramework.SqlServer.dll
+D:\Аленка\MessageOfTheDay\MessageOfTheDay.Tests\bin\Debug\EntityFramework.SqlServer.xml

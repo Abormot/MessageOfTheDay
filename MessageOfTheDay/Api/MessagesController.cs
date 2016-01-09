@@ -35,19 +35,23 @@ namespace MessageOfTheDay.Controllers
         public IHttpActionResult GetLanguages()
         {
             var result = _languageService.GetLanguagesQuery().ToArray();
-            if (result.Any())
-                return Ok(result);
-            return BadRequest();
+            if (!result.Any())
+            {
+                return BadRequest();
+            }
+            return Ok(result);
         }
 
         // GET api/Messages/GetDays
         [HttpGet]
         public IHttpActionResult GetDays()
         {
-            var result = _daysService.GetDaysQuery().ToArray();
-            if (result.Any())
-                return Ok(result);
-            return BadRequest();
+            var result = _daysService.GetDaysQuery();
+            if (!result.Any())
+            {
+                return BadRequest();
+            }
+            return Ok(result);
         }
 
         // GET api/Messages/GetMessage?dayid=<value>&languageID=<value>
@@ -55,24 +59,22 @@ namespace MessageOfTheDay.Controllers
         public IHttpActionResult GetMessage(int dayId, int languageId)
         {
             var result = _messageSevice.GetMessageQuery(dayId, languageId);
-            if (result != null)
-                return Ok(result);
-            return BadRequest();
+            if (result == null)
+            {
+                return BadRequest(); 
+            }
+            return Ok(result);
         }
 
         // POST api/Messages/SetMessage
         [HttpPost]
-        public IHttpActionResult SetMessage([FromUri] int Id, [FromBody] Message message)
+        public IHttpActionResult SetMessage([FromBody] Message message)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                return Ok(_messageSevice.SetMessageCommand(Id, message.Text));
+                return BadRequest(ModelState);
             }
-            else
-            {
-                var error = ModelState.Values.SelectMany(modelState => modelState.Errors).FirstOrDefault();
-                return BadRequest(error!= null ? error.ErrorMessage : "Some error occured");
-            }
+            return Ok(_messageSevice.SetMessageCommand(message.Id, message.Text));
         }
     }
 }
