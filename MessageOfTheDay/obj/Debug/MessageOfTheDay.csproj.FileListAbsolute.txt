@@ -9,6 +9,7 @@ D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Newtonsoft.Json.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.Common.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.dll
+D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.WebHost.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Net.Http.Formatting.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.Helpers.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.Http.dll
@@ -19,12 +20,14 @@ D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.Razor.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.WebPages.Deployment.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.WebPages.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.WebPages.Razor.dll
+D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\WebActivatorEx.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\WebGrease.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\EntityFramework.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\EntityFramework.SqlServer.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.Common.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.xml
+D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.WebHost.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Newtonsoft.Json.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Net.Http.Formatting.xml
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.Helpers.xml
@@ -39,7 +42,3 @@ D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\System.Web.WebPages.Razor.xm
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Antlr3.Runtime.pdb
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\obj\Debug\MessageOfTheDay.dll
 D:\Аленка\MessageOfTheDay\MessageOfTheDay\obj\Debug\MessageOfTheDay.pdb
-D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.WebHost.dll
-D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\WebActivatorEx.dll
-D:\Аленка\MessageOfTheDay\MessageOfTheDay\bin\Ninject.Web.WebApi.WebHost.xml
-D:\Аленка\MessageOfTheDay\MessageOfTheDay\obj\Debug\MessageOfTheDay.csprojResolveAssemblyReference.cache
