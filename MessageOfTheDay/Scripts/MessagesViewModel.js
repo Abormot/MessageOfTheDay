@@ -1,20 +1,15 @@
-﻿//if (typeof ($) != object)
-//    throw new Error("Dependencies to jquery are not loaded to the MessageOfTheDay module");
-//if (typeof (ko) != object)
-//    throw new Error("Dependencies to knockout are not loaded to the MessageOfTheDay module");
-
-var module = (function () {
+﻿var module = (function () {
     
     var module = {};
 
-    // Load days list from server, then populate self.Days
+    // Load days list from server, then populate Days
     function LoadDays() {
         return $.getJSON("/api/Messages/getDays", function (data) {
             module.days = data;
         });
     }
 
-    // Load Languages list from server, then populate self.Languages
+    // Load Languages list from server, then populate Languages
     function LoadLanguages() {
        return $.getJSON("/api/Messages/getLanguages", function (data) {
             module.languages = data;
@@ -79,27 +74,34 @@ var module = (function () {
 
         //Edit message area
         var tempvalue;
+
         self.isEditMode = ko.observable(false);
+        self.errorMessage = ko.observable();
 
         self.Edit = function Edit() {
             tempvalue = self.message().Text;
             self.isEditMode(true);
         }
 
-        self.Error = ko.observable();
-
         self.Save = function Save() {
             $.post("/api/Messages/SetMessage/" + self.message().Id, { text: self.message().Text })
             .success(function (data) {
+                clearErrorMessage();
                 self.message(data);
                 self.isEditMode(false);
             })
-            .error(function (data) {
-                self.Error(data.responseText.Message);
+            .error(function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                self.errorMessage(err.Message);
             });
         }
 
+        function clearErrorMessage() {
+            self.errorMessage("");
+        }
+
         self.Cancel = function Cancel() {
+            clearErrorMessage();
             $("#messageText").val(tempvalue);
             self.message().Text = tempvalue;
             self.isEditMode(false);

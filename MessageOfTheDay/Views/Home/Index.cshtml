@@ -3,7 +3,7 @@
         <div class="navbar-collapse collapse" style="float:left">
 
             <div class="menu">
-                <img class="flag menu" data-bind="attr: {src: selectedLanguageImagePath }" />
+                <img class="flag menu" data-bind="attr: { src: selectedLanguageImagePath }" />
                 <select id="language" class="form-control menu" data-bind="options: languages, optionsText: 'Name', optionsValue: 'Id', value: selectedLanguage, event: { change: $root.languageChanged }"></select>
             </div>
             <div class="menu">
@@ -13,9 +13,9 @@
     </div>
 </div>
 <div class="jumbotron">
+    <span data-bind="text: errorMessage" class="red"></span>
     <div data-bind="with: message">
         <input id="messageId" type="hidden" data-bind="value: Id" />
-        <span id="error" data-bind="text: $parent.Error" class="red"></span>
         <h1>
             <span data-bind="text: Text, visible: !$parent.isEditMode()"></span>
             <textarea id="messageText" class="form-control" data-bind="value: Text, visible: $parent.isEditMode()"></textarea>
