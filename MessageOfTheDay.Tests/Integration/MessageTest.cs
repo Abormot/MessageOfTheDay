@@ -65,7 +65,6 @@ namespace MessageOfTheDay.Tests.Integration
 
             //Act
             var result = _controller.SetMessage(message);
-            var response = result as OkNegotiatedContentResult<MessageDTO>;
 
             using (var db = new MessagesDBEntities())
             {
@@ -74,8 +73,6 @@ namespace MessageOfTheDay.Tests.Integration
 
                 // Assert
                 Assert.IsInstanceOf<System.Web.Http.IHttpActionResult>(result);
-                Assert.IsNotNull(response);
-                Assert.AreEqual(message.Text, response.Content.Text);
                 Assert.AreEqual(message.Text, dbMessage.Message);
 
                 //Get back value in db

@@ -90,16 +90,13 @@ namespace MessageOfTheDay.Tests.Controllers
                 Id = 1,
                 Text = "new message text"
             };
-            _messageService.Setup(x => x.SetMessage(It.IsIn(expected.Id), It.IsIn(expected.Text))).Returns(expected);
+            _messageService.Setup(x => x.SetMessage(expected.Id, expected.Text));
 
             // Act
             var result = _controller.SetMessage(expected);
-            var response = result as OkNegotiatedContentResult<MessageDTO>;
 
             // Assert
             Assert.IsInstanceOf<IHttpActionResult>(result);
-            Assert.IsNotNull(response);
-            Assert.AreEqual(expected, response.Content);
         }
     }
 }
