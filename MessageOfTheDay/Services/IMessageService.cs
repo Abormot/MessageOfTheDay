@@ -13,7 +13,7 @@ namespace MessageOfTheDay.Services
         /// <param name="dayId">Day id</param>
         /// <param name="languageId">Language Id</param>
         /// <returns>Message entity</returns>
-        MessageDTO GetMessageQuery(int dayId, int languageId);
+        MessageDTO GetMessage(int dayId, int languageId);
 
         /// <summary>
         /// Set message text for the message
@@ -21,6 +21,6 @@ namespace MessageOfTheDay.Services
         /// <param name="id">Message id</param>
         /// <param name="messageText">New message text</param>
         /// <returns>Updated message entity</returns>
-        MessageDTO SetMessageCommand(int id, string messageText);
+        void SetMessage(int id, string messageText);
     }
 }

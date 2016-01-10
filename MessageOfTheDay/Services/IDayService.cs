@@ -12,6 +12,6 @@ namespace MessageOfTheDay.Services
         /// Get all days 
         /// </summary>
         /// <returns>day of week collection</returns>
-        IList<DayDTO> GetDaysQuery();
+        IList<DayDTO> GetDays();
     }
 }

@@ -34,7 +34,10 @@
 
         var self = this;
 
-        self.message = ko.observable();
+        self.message = ko.mapping.fromJS({
+            Id:0, Text: "", Day: ""
+        });
+
         self.languages = ko.observableArray(module.languages);
         self.days = ko.observableArray(module.days);
 
@@ -66,7 +69,7 @@
         function loadMessage() {
             return $.getJSON("/api/Messages/getMessage?dayId=" + self.selectedDay() + "&languageId=" + self.selectedLanguage(),
                 function (message) {
-                    self.message(message);
+                    ko.mapping.fromJS(message, self.message);
                 });
         }
 
@@ -79,15 +82,14 @@
         self.errorMessage = ko.observable();
 
         self.Edit = function() {
-            tempvalue = self.message().Text;
+            tempvalue = self.message.Text();
             self.isEditMode(true);
         }
 
         self.Save = function() {
-            $.post("/api/Messages/SetMessage/", { id: self.message().Id, text: self.message().Text })
-            .success(function (data) {
+            $.post("/api/Messages/SetMessage/", { id: self.message.Id, text: self.message.Text })
+            .success(function () {
                 clearErrorMessage();
-                self.message(data);
                 self.isEditMode(false);
             })
             .error(function (xhr) {
@@ -105,8 +107,7 @@
 
         self.Cancel = function() {
             clearErrorMessage();
-            $("#messageText").val(tempvalue);
-            self.message().Text = tempvalue;
+            self.message.Text(tempvalue);
             self.isEditMode(false);
         }
         //Edit message area End

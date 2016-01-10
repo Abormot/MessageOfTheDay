@@ -43,11 +43,7 @@ namespace MessageOfTheDay.Api
         [HttpGet]
         public IHttpActionResult GetLanguages()
         {
-            var result = _languageService.GetLanguagesQuery().ToArray();
-            if (!result.Any())
-            {
-                return BadRequest();
-            }
+            var result = _languageService.GetLanguages().ToArray();
             return Ok(result);
         }
 
@@ -58,11 +54,7 @@ namespace MessageOfTheDay.Api
         [HttpGet]
         public IHttpActionResult GetDays()
         {
-            var result = _dayService.GetDaysQuery();
-            if (!result.Any())
-            {
-                return BadRequest();
-            }
+            var result = _dayService.GetDays();
             return Ok(result);
         }
 
@@ -75,10 +67,10 @@ namespace MessageOfTheDay.Api
         [HttpGet]
         public IHttpActionResult GetMessage(int dayId, int languageId)
         {
-            var result = _messageSevice.GetMessageQuery(dayId, languageId);
+            var result = _messageSevice.GetMessage(dayId, languageId);
             if (result == null)
             {
-                return BadRequest(); 
+                return NotFound(); 
             }
             return Ok(result);
         }
@@ -95,7 +87,8 @@ namespace MessageOfTheDay.Api
             {
                 return BadRequest(ModelState);
             }
-            return Ok(_messageSevice.SetMessageCommand(message.Id, message.Text));
+            _messageSevice.SetMessage(message.Id, message.Text);
+            return Ok();
         }
     }
 }

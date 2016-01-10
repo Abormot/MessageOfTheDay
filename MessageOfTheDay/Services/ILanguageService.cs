@@ -12,6 +12,6 @@ namespace MessageOfTheDay.Services
         /// Get all languages
         /// </summary>
         /// <returns>languages</returns>
-        IList<LanguageDTO> GetLanguagesQuery();
+        IList<LanguageDTO> GetLanguages();
     }
 }

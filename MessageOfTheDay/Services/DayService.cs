@@ -14,7 +14,7 @@ namespace MessageOfTheDay.Services
         /// Get all days
         /// </summary>
         /// <returns>Day of week collection</returns>
-        public IList<DayDTO> GetDaysQuery()
+        public IList<DayDTO> GetDays()
         {
             using (var db = new MessagesDBEntities())
             {

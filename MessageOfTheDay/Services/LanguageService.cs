@@ -14,7 +14,7 @@ namespace MessageOfTheDay.Services
         /// Get all languages
         /// </summary>
         /// <returns>Languages collection</returns>
-        public IList<LanguageDTO> GetLanguagesQuery()
+        public IList<LanguageDTO> GetLanguages()
         {
             using (var db = new MessagesDBEntities())
             {

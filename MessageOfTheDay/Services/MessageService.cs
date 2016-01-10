@@ -15,7 +15,7 @@ namespace MessageOfTheDay.Services
         /// <param name="dayId">Day id</param>
         /// <param name="languageId">Language id</param>
         /// <returns>Message entity</returns>
-        public MessageDTO GetMessageQuery(int dayId, int languageId)
+        public MessageDTO GetMessage(int dayId, int languageId)
         {
             var result = new MessageDTO();
             using (var db = new MessagesDBEntities())
@@ -41,28 +41,15 @@ namespace MessageOfTheDay.Services
         /// <param name="id">Message id</param>
         /// <param name="messageText">New message text</param>
         /// <returns>Updated message entity</returns>
-        public MessageDTO SetMessageCommand(int id, string messageText)
+        public void SetMessage(int id, string messageText)
         {
             using (var db = new MessagesDBEntities())
             {
                 var message = db.Messages.FirstOrDefault(x => x.Id == id);
-                if (message != null)
-                {
-                    message.Message = messageText;
-                    db.SaveChanges();
-
-                    return new MessageDTO
-                           {
-                               Id = message.Id,
-                               DayId = message.DayId ?? 0,
-                               Day = message.Days != null ? message.Days.Name : "",
-                               LanguageId = message.LanguageId ?? 0,
-                               Language = message.Languages != null ? message.Languages.Name : "",
-                               Text = message.Message
-                           };
-                }
+                if (message == null) return;
+                message.Message = messageText;
+                db.SaveChanges();
             }
-            return null;
         }
     }
 }

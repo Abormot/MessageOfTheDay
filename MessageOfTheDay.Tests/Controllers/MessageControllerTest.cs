@@ -34,7 +34,7 @@ namespace MessageOfTheDay.Tests.Controllers
         {
             // Arrange
             var expected = new List<DayDTO> { new DayDTO() };
-            _dayService.Setup(x => x.GetDaysQuery()).Returns(expected);
+            _dayService.Setup(x => x.GetDays()).Returns(expected);
             
             // Act
             var result = _controller.GetDays();
@@ -60,7 +60,7 @@ namespace MessageOfTheDay.Tests.Controllers
                 Text = string.Format("test messgae for day {0}, language {1}", dayId, languageId)
             };
 
-            _messageService.Setup(x => x.GetMessageQuery(It.IsIn(dayId), It.IsIn(languageId))).Returns(expected);
+            _messageService.Setup(x => x.GetMessage(It.IsIn(dayId), It.IsIn(languageId))).Returns(expected);
 
             // Act
             var result = _controller.GetMessage(dayId, languageId);
@@ -78,7 +78,7 @@ namespace MessageOfTheDay.Tests.Controllers
             // Act
             var result = _controller.GetMessage(0, 0);
             // Assert
-            Assert.IsInstanceOf<BadRequestResult>(result);
+            Assert.IsInstanceOf<NotFoundResult>(result);
         }
 
         [Test]
@@ -90,7 +90,7 @@ namespace MessageOfTheDay.Tests.Controllers
                 Id = 1,
                 Text = "new message text"
             };
-            _messageService.Setup(x => x.SetMessageCommand(It.IsIn(expected.Id), It.IsIn(expected.Text))).Returns(expected);
+            _messageService.Setup(x => x.SetMessage(It.IsIn(expected.Id), It.IsIn(expected.Text))).Returns(expected);
 
             // Act
             var result = _controller.SetMessage(expected);
