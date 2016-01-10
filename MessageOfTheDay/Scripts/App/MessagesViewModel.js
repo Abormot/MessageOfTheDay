@@ -1,48 +1,32 @@
-﻿var module = (function () {
-    
-    var module = {};
+﻿"use strict";
 
-    // Load days list from server, then populate Days
-    function loadDays() {
-        return $.getJSON("/api/Messages/getDays", function (data) {
-            module.days = data;
-        });
-    }
+if (typeof DataProvider !== "object") { throw new Error("DataProvider.js is required"); }
 
-    // Load Languages list from server, then populate Languages
-    function loadLanguages() {
-       return $.getJSON("/api/Messages/getLanguages", function (data) {
-            module.languages = data;
-        });
-    }
+var module = (function (dataProvider) {
 
     var init = function() {
+
+        $.blockUI({ message: "<h4> Just a moment...</h4>" });
+        $.when(dataProvider.loadDays(), dataProvider.loadLanguages()).then(function (days, languages) {
+            ko.applyBindings(new MessageViewModel(days[0], languages[0]));
+        }).then(function () { $.unblockUI(); });
+    };
+
+    function MessageViewModel(days, languages) {
+
+        var self = this;
+        
+        self.languages = ko.observableArray(languages);
+        self.days = ko.observableArray(days);
+
         //define current day of week to set as a default
         var today = new Date();
         var currentDayOfWeek = today.getDay() === 0 ? 7 : today.getDay();
 
-        module.initDay = currentDayOfWeek;
-        module.initLanguage = 1;
-        
-        $.blockUI({ message: "<h4> Just a moment...</h4>" });
-        loadDays().then(loadLanguages)
-            .then(function () { ko.applyBindings(new MessageViewModel()); })
-            .then(function () { $.unblockUI(); });
-    };
+        self.message = ko.mapping.fromJS({Id:0, Text: "", Day:""});
 
-    function MessageViewModel() {
-
-        var self = this;
-
-        self.message = ko.mapping.fromJS({
-            Id:0, Text: "", Day: ""
-        });
-
-        self.languages = ko.observableArray(module.languages);
-        self.days = ko.observableArray(module.days);
-
-        self.selectedDay = ko.observable(module.initDay);
-        self.selectedLanguage = ko.observable(module.initLanguage);
+        self.selectedDay = ko.observable(currentDayOfWeek);
+        self.selectedLanguage = ko.observable(1);
         self.selectedLanguageImagePath = ko.computed(function () {
             return "/Content/Images/" + self.languages().filter(
                 function (item) {
@@ -51,7 +35,7 @@
         });
 
         self.selectDefaultDay = function (option, item) {
-            if (item.Id === module.initDay) {
+            if (item.Id === currentDayOfWeek) {
                 ko.applyBindingsToNode(option.parentElement, { value: item.Id }, item);
             }
         };
@@ -65,15 +49,14 @@
             self.isEditMode(false);
             loadMessage();
         };
-        
-        function loadMessage() {
-            return $.getJSON("/api/Messages/getMessage?dayId=" + self.selectedDay() + "&languageId=" + self.selectedLanguage(),
-                function (message) {
-                    ko.mapping.fromJS(message, self.message);
-                });
-        }
 
         loadMessage();
+
+        function loadMessage() {
+            $.when(dataProvider.loadMessage(self.selectedDay(), self.selectedLanguage())).then(function (message) {
+                ko.mapping.fromJS(message, self.message);
+            });
+        }
 
         //Edit message area
         var tempvalue;
@@ -114,7 +97,7 @@
     }
 
     return {
-        InitModule: init
+        Init: init
     }
 
-})();
+})(DataProvider);

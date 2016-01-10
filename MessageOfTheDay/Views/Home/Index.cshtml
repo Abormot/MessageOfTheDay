@@ -29,11 +29,11 @@
 
 
 @section scripts {
-   
-    <script src="@Url.Content("~/Scripts/App/MessagesViewModel.js")"></script>
+    
+    @Scripts.Render("~/bundles/messageOfTheDay")
     <script type="text/javascript">
         $(function () {
-            module.InitModule();
+            module.Init();
         });
     </script>
 }
